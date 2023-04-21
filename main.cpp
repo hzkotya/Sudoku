@@ -2,6 +2,7 @@
 #include <vector>
 #include <random>
 #include <chrono>
+
 class Sudoku {
 
 public:
@@ -82,9 +83,9 @@ private:
 
 
     void _SwapHorizontalAreas() {
-        int row = _GetRandomNumber(0, _Size);
-        int first_area = _GetRandomNumber(0, _Size);
-        int second_area = _GetRandomNumber(0, _Size);
+        int row = _GetRandomNumber(_Size);
+        int first_area = _GetRandomNumber(_Size);
+        int second_area = _GetRandomNumber(_Size);
         for (int index_first = 0; index_first < _Size; ++index_first) {
             for (int index_second = 0; index_second < _Size; ++index_second) {
                 std::swap(_Answer[index_first + _Size * row][index_second + _Size * first_area],
