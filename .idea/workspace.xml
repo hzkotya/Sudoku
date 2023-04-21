@@ -63,6 +63,7 @@
     <option name="minorVersion" value="3.2" />
   </component>
   <component name="ProjectId" id="2OXesMWoqyAdECbdox1WrEz57Jb" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -117,6 +118,7 @@
       <workItem from="1682112254267" duration="1000" />
       <workItem from="1682112789891" duration="1294000" />
       <workItem from="1682114105068" duration="172000" />
+      <workItem from="1682112789891" duration="987000" />
     </task>
     <task id="LOCAL-00001" summary="penis penis">
       <created>1682113164466</created>
@@ -165,7 +167,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="penis penis" />
-    <MESSAGE value="cosmetica tuda suda" />
-    <option name="LAST_COMMIT_MESSAGE" value="cosmetica tuda suda" />
+    <option name="LAST_COMMIT_MESSAGE" value="penis penis" />
   </component>
 </project>
