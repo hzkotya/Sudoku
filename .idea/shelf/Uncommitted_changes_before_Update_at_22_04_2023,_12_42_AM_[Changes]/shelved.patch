@@ -1,0 +1,173 @@
+Index: main.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include <iostream>\n#include <vector>\n#include <random>\n#include <chrono>\nclass Sudoku {\n\npublic:\n\n    std::vector<std::vector<int>> Current;\n\n    void print() {\n        for (int i = 0; i < _Size * _Size; ++i) {\n            for (int j = 0; j < _Size * _Size; ++j) {\n                std::cerr << _Answer[i][j] << ' ';\n            }\n            std::cerr << '\\n';\n        }\n        std::cerr << '\\n';\n    }\n\n    explicit Sudoku(int grid_size) {\n        int a;\n        _Size = grid_size;\n        _Answer.assign(_Size * _Size, std::vector<int>(_Size * _Size));\n        for (int index_first = 0; index_first < _Size * _Size; ++index_first) {\n            for (int index_second = 0; index_second < _Size * _Size; ++index_second) {\n                _Answer[index_first][index_second] = (\n                        (index_first * _Size + index_first / _Size + index_second) % (_Size * _Size) + 1);\n            }\n        }\n        print();\n        _MixGrid();\n\n    }\n\n\nprivate:\n\n    int _Size;\n    std::vector<std::vector<int>> _Answer;\n    const int _Seed{static_cast<int>(std::chrono::high_resolution_clock::now().time_since_epoch().count())};\n    std::mt19937 _Random{static_cast<unsigned int>(_Seed)};\n\n    int _GetRandomNumber(int bound) {\n        return _Random() % bound;\n    }\n\n    bool _Check(int row, int column, int value) const {\n        if (_Answer[row][column] != value) {\n            return false;\n        }\n        return true;\n    }\n\n    void _SwapRows() {\n        int area = _GetRandomNumber(_Size);\n        int first_row = _GetRandomNumber(_Size);\n        int second_row = _GetRandomNumber(_Size);\n        std::swap(_Answer[first_row + _Size * area], _Answer[second_row + _Size * area]);\n    }\n\n    void SwapColumns() {\n        int area = _GetRandomNumber(_Size);\n        int first_column = _GetRandomNumber(_Size);\n        int second_column = _GetRandomNumber(_Size);\n        for (int index = 0; index < _Size; ++index) {\n            std::swap(_Answer[index][first_column + _Size * area], _Answer[index][second_column + _Size * area]);\n        }\n    }\n\n    void _SwapVerticalAreas() {\n        int column = _GetRandomNumber(_Size);\n        int first_area = _GetRandomNumber(_Size);\n        int second_area = _GetRandomNumber(_Size);\n        for (int index_first = 0; index_first < _Size; ++index_first) {\n            for (int index_second = 0; index_second < _Size; ++index_second) {\n                std::swap(_Answer[index_second + _Size * first_area][index_first + _Size * column],\n                          _Answer[index_second + _Size * second_area][index_first + _Size * column]);\n            }\n        }\n    }\n\n\n    void _SwapHorizontalAreas() {\n        int row = _GetRandomNumber(0, _Size);\n        int first_area = _GetRandomNumber(0, _Size);\n        int second_area = _GetRandomNumber(0, _Size);\n        for (int index_first = 0; index_first < _Size; ++index_first) {\n            for (int index_second = 0; index_second < _Size; ++index_second) {\n                std::swap(_Answer[index_first + _Size * row][index_second + _Size * first_area],\n                          _Answer[index_second + _Size * row][index_second + _Size * second_area]);\n            }\n        }\n    }\n\n    void _MixGrid() {\n        for (int iteration = 0; iteration < 100; ++iteration) {\n            _SwapRows();\n            SwapColumns();\n            _SwapVerticalAreas();\n            _SwapHorizontalAreas();\n        }\n    }\n\n};\n\nint main() {\n    auto s = Sudoku(3);\n    s.print();\n    return 0;\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/main.cpp b/main.cpp
+--- a/main.cpp	(revision 4e985c4f92b5b371b9734cd1f3d31070db41d158)
++++ b/main.cpp	(date 1682113142042)
+@@ -9,8 +9,8 @@
+     std::vector<std::vector<int>> Current;
+ 
+     void print() {
+-        for (int i = 0; i < _Size * _Size; ++i) {
+-            for (int j = 0; j < _Size * _Size; ++j) {
++        for (int i = 0; i < Size * Size; ++i) {
++            for (int j = 0; j < Size * Size; ++j) {
+                 std::cerr << _Answer[i][j] << ' ';
+             }
+             std::cerr << '\n';
+@@ -19,13 +19,12 @@
+     }
+ 
+     explicit Sudoku(int grid_size) {
+-        int a;
+-        _Size = grid_size;
+-        _Answer.assign(_Size * _Size, std::vector<int>(_Size * _Size));
+-        for (int index_first = 0; index_first < _Size * _Size; ++index_first) {
+-            for (int index_second = 0; index_second < _Size * _Size; ++index_second) {
++        Size = grid_size;
++        _Answer.assign(Size * Size, std::vector<int>(Size * Size));
++        for (int index_first = 0; index_first < Size * Size; ++index_first) {
++            for (int index_second = 0; index_second < Size * Size; ++index_second) {
+                 _Answer[index_first][index_second] = (
+-                        (index_first * _Size + index_first / _Size + index_second) % (_Size * _Size) + 1);
++                        (index_first * Size + index_first / Size + index_second) % (Size * Size) + 1);
+             }
+         }
+         print();
+@@ -36,7 +35,7 @@
+ 
+ private:
+ 
+-    int _Size;
++    int Size;
+     std::vector<std::vector<int>> _Answer;
+     const int _Seed{static_cast<int>(std::chrono::high_resolution_clock::now().time_since_epoch().count())};
+     std::mt19937 _Random{static_cast<unsigned int>(_Seed)};
+@@ -45,7 +44,7 @@
+         return _Random() % bound;
+     }
+ 
+-    bool _Check(int row, int column, int value) const {
++    [[nodiscard]] bool _Check(int row, int column, int value) const {
+         if (_Answer[row][column] != value) {
+             return false;
+         }
+@@ -53,42 +52,42 @@
+     }
+ 
+     void _SwapRows() {
+-        int area = _GetRandomNumber(_Size);
+-        int first_row = _GetRandomNumber(_Size);
+-        int second_row = _GetRandomNumber(_Size);
+-        std::swap(_Answer[first_row + _Size * area], _Answer[second_row + _Size * area]);
++        int area = _GetRandomNumber(Size);
++        int first_row = _GetRandomNumber(Size);
++        int second_row = _GetRandomNumber(Size);
++        std::swap(_Answer[first_row + Size * area], _Answer[second_row + Size * area]);
+     }
+ 
+     void SwapColumns() {
+-        int area = _GetRandomNumber(_Size);
+-        int first_column = _GetRandomNumber(_Size);
+-        int second_column = _GetRandomNumber(_Size);
+-        for (int index = 0; index < _Size; ++index) {
+-            std::swap(_Answer[index][first_column + _Size * area], _Answer[index][second_column + _Size * area]);
++        int area = _GetRandomNumber(Size);
++        int first_column = _GetRandomNumber(Size);
++        int second_column = _GetRandomNumber(Size);
++        for (int index = 0; index < Size; ++index) {
++            std::swap(_Answer[index][first_column + Size * area], _Answer[index][second_column + Size * area]);
+         }
+     }
+ 
+     void _SwapVerticalAreas() {
+-        int column = _GetRandomNumber(_Size);
+-        int first_area = _GetRandomNumber(_Size);
+-        int second_area = _GetRandomNumber(_Size);
+-        for (int index_first = 0; index_first < _Size; ++index_first) {
+-            for (int index_second = 0; index_second < _Size; ++index_second) {
+-                std::swap(_Answer[index_second + _Size * first_area][index_first + _Size * column],
+-                          _Answer[index_second + _Size * second_area][index_first + _Size * column]);
++        int column = _GetRandomNumber(Size);
++        int first_area = _GetRandomNumber(Size);
++        int second_area = _GetRandomNumber(Size);
++        for (int index_first = 0; index_first < Size; ++index_first) {
++            for (int index_second = 0; index_second < Size; ++index_second) {
++                std::swap(_Answer[index_second + Size * first_area][index_first + Size * column],
++                          _Answer[index_second + Size * second_area][index_first + Size * column]);
+             }
+         }
+     }
+ 
+ 
+     void _SwapHorizontalAreas() {
+-        int row = _GetRandomNumber(0, _Size);
+-        int first_area = _GetRandomNumber(0, _Size);
+-        int second_area = _GetRandomNumber(0, _Size);
+-        for (int index_first = 0; index_first < _Size; ++index_first) {
+-            for (int index_second = 0; index_second < _Size; ++index_second) {
+-                std::swap(_Answer[index_first + _Size * row][index_second + _Size * first_area],
+-                          _Answer[index_second + _Size * row][index_second + _Size * second_area]);
++        int row = _GetRandomNumber(Size);
++        int first_area = _GetRandomNumber(Size);
++        int second_area = _GetRandomNumber(Size);
++        for (int index_first = 0; index_first < Size; ++index_first) {
++            for (int index_second = 0; index_second < Size; ++index_second) {
++                std::swap(_Answer[index_first + Size * row][index_second + Size * first_area],
++                          _Answer[index_second + Size * row][index_second + Size * second_area]);
+             }
+         }
+     }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"CMakePresetLoader\">{\n  &quot;useNewFormat&quot;: true\n}</component>\n  <component name=\"CMakeReloadState\">\n    <option name=\"reloaded\" value=\"true\" />\n  </component>\n  <component name=\"CMakeRunConfigurationManager\">\n    <generated>\n      <config projectName=\"program\" targetName=\"program\" />\n    </generated>\n  </component>\n  <component name=\"CMakeSettings\" AUTO_RELOAD=\"true\">\n    <configurations>\n      <configuration PROFILE_NAME=\"Debug\" ENABLED=\"true\" CONFIG_NAME=\"Debug\" />\n    </configurations>\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"532e7e04-a3da-4664-b78e-237547df8558\" name=\"Changes\" comment=\"\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/main.cpp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/main.cpp\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"ClangdSettings\">\n    <option name=\"formatViaClangd\" value=\"false\" />\n  </component>\n  <component name=\"ExecutionTargetManager\" SELECTED_TARGET=\"CMakeBuildProfile:Debug\" />\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"CMakeLists.txt\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProblemsViewState\">\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\n  </component>\n  <component name=\"ProjectApplicationVersion\">\n    <option name=\"ide\" value=\"CLion\" />\n    <option name=\"majorVersion\" value=\"2022\" />\n    <option name=\"minorVersion\" value=\"3.2\" />\n  </component>\n  <component name=\"ProjectId\" id=\"2OXesMWoqyAdECbdox1WrEz57Jb\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\n    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,\n    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,\n    &quot;last_opened_file_path&quot;: &quot;/Users/maria/prog/sudoku&quot;,\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\n  }\n}</component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$\" />\n    </key>\n  </component>\n  <component name=\"RunManager\">\n    <configuration name=\"program\" type=\"CMakeRunConfiguration\" factoryName=\"Application\" REDIRECT_INPUT=\"false\" ELEVATE=\"false\" USE_EXTERNAL_CONSOLE=\"false\" PASS_PARENT_ENVS_2=\"true\" PROJECT_NAME=\"program\" TARGET_NAME=\"program\" CONFIG_NAME=\"Debug\" RUN_TARGET_PROJECT_NAME=\"program\" RUN_TARGET_NAME=\"program\">\n      <method v=\"2\">\n        <option name=\"com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask\" enabled=\"true\" />\n      </method>\n    </configuration>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"532e7e04-a3da-4664-b78e-237547df8558\" name=\"Changes\" comment=\"\" />\n      <created>1681711559533</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1681711559533</updated>\n      <workItem from=\"1681711560584\" duration=\"1734000\" />\n      <workItem from=\"1681716124007\" duration=\"1414000\" />\n      <workItem from=\"1681804245779\" duration=\"6486000\" />\n      <workItem from=\"1681937563686\" duration=\"5659000\" />\n      <workItem from=\"1682112254267\" duration=\"466000\" />\n    </task>\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"XDebuggerManager\">\n    <breakpoint-manager>\n      <breakpoints>\n        <line-breakpoint enabled=\"true\" type=\"com.jetbrains.cidr.execution.debugger.OCBreakpointType\">\n          <url>file://$PROJECT_DIR$/main.cpp</url>\n          <line>54</line>\n          <option name=\"timeStamp\" value=\"1\" />\n        </line-breakpoint>\n        <line-breakpoint enabled=\"true\" type=\"com.jetbrains.cidr.execution.debugger.OCBreakpointType\">\n          <url>file://$PROJECT_DIR$/main.cpp</url>\n          <line>61</line>\n          <option name=\"timeStamp\" value=\"2\" />\n        </line-breakpoint>\n        <line-breakpoint enabled=\"true\" type=\"com.jetbrains.cidr.execution.debugger.OCBreakpointType\">\n          <url>file://$PROJECT_DIR$/main.cpp</url>\n          <line>70</line>\n          <option name=\"timeStamp\" value=\"3\" />\n        </line-breakpoint>\n      </breakpoints>\n    </breakpoint-manager>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 4e985c4f92b5b371b9734cd1f3d31070db41d158)
++++ b/.idea/workspace.xml	(date 1682113101800)
+@@ -20,8 +20,7 @@
+     </configurations>
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="532e7e04-a3da-4664-b78e-237547df8558" name="Changes" comment="">
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++    <list default="true" id="532e7e04-a3da-4664-b78e-237547df8558" name="Changes" comment="test">
+       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -98,8 +97,16 @@
+       <workItem from="1681716124007" duration="1414000" />
+       <workItem from="1681804245779" duration="6486000" />
+       <workItem from="1681937563686" duration="5659000" />
+-      <workItem from="1682112254267" duration="466000" />
++      <workItem from="1682112254267" duration="846000" />
++    </task>
++    <task id="LOCAL-00001" summary="test">
++      <created>1682112863072</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1682112863072</updated>
+     </task>
++    <option name="localTasksCounter" value="2" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -115,6 +122,10 @@
+         </entry>
+       </map>
+     </option>
++  </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="test" />
++    <option name="LAST_COMMIT_MESSAGE" value="test" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
