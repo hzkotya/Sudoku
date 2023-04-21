@@ -1,12 +1,9 @@
 #include <iostream>
 #include <vector>
-#include <random>
-#include <chrono>
+#include "Random.h"
 
 class Sudoku {
-
 public:
-
     std::vector<std::vector<int>> Current;
 
     void print() {
@@ -31,20 +28,11 @@ public:
         }
         print();
         _MixGrid();
-
     }
-
 
 private:
-
     int _Size;
     std::vector<std::vector<int>> _Answer;
-    const int _Seed{static_cast<int>(std::chrono::high_resolution_clock::now().time_since_epoch().count())};
-    std::mt19937 _Random{static_cast<unsigned int>(_Seed)};
-
-    int _GetRandomNumber(int bound) {
-        return _Random() % bound;
-    }
 
     bool _Check(int row, int column, int value) const {
         if (_Answer[row][column] != value) {
@@ -54,25 +42,25 @@ private:
     }
 
     void _SwapRows() {
-        int area = _GetRandomNumber(_Size);
-        int first_row = _GetRandomNumber(_Size);
-        int second_row = _GetRandomNumber(_Size);
+        int area = GetRandomNumber(_Size);
+        int first_row = GetRandomNumber(_Size);
+        int second_row = GetRandomNumber(_Size);
         std::swap(_Answer[first_row + _Size * area], _Answer[second_row + _Size * area]);
     }
 
     void SwapColumns() {
-        int area = _GetRandomNumber(_Size);
-        int first_column = _GetRandomNumber(_Size);
-        int second_column = _GetRandomNumber(_Size);
+        int area = GetRandomNumber(_Size);
+        int first_column = GetRandomNumber(_Size);
+        int second_column = GetRandomNumber(_Size);
         for (int index = 0; index < _Size; ++index) {
             std::swap(_Answer[index][first_column + _Size * area], _Answer[index][second_column + _Size * area]);
         }
     }
 
     void _SwapVerticalAreas() {
-        int column = _GetRandomNumber(_Size);
-        int first_area = _GetRandomNumber(_Size);
-        int second_area = _GetRandomNumber(_Size);
+        int column = GetRandomNumber(_Size);
+        int first_area = GetRandomNumber(_Size);
+        int second_area = GetRandomNumber(_Size);
         for (int index_first = 0; index_first < _Size; ++index_first) {
             for (int index_second = 0; index_second < _Size; ++index_second) {
                 std::swap(_Answer[index_second + _Size * first_area][index_first + _Size * column],
@@ -83,9 +71,9 @@ private:
 
 
     void _SwapHorizontalAreas() {
-        int row = _GetRandomNumber(_Size);
-        int first_area = _GetRandomNumber(_Size);
-        int second_area = _GetRandomNumber(_Size);
+        int row = GetRandomNumber(_Size);
+        int first_area = GetRandomNumber(_Size);
+        int second_area = GetRandomNumber(_Size);
         for (int index_first = 0; index_first < _Size; ++index_first) {
             for (int index_second = 0; index_second < _Size; ++index_second) {
                 std::swap(_Answer[index_first + _Size * row][index_second + _Size * first_area],

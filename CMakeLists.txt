@@ -13,6 +13,6 @@ set(CMAKE_CXX_EXTENSIONS Off)
 #
 #file(GLOB SOURCES "*.cpp")
 
-add_executable(program main.cpp)
+add_executable(program main.cpp Random.h)
 
 #target_link_libraries(program ${GTKMM_LIBRARIES})
