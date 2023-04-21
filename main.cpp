@@ -19,6 +19,7 @@ public:
     }
 
     explicit Sudoku(int grid_size) {
+        int a;
         _Size = grid_size;
         _Answer.assign(_Size * _Size, std::vector<int>(_Size * _Size));
         for (int index_first = 0; index_first < _Size * _Size; ++index_first) {
@@ -40,8 +41,8 @@ private:
     const int _Seed{static_cast<int>(std::chrono::high_resolution_clock::now().time_since_epoch().count())};
     std::mt19937 _Random{static_cast<unsigned int>(_Seed)};
 
-    int _GetRandomNumber(int left_bound, int right_bound) {
-        return left_bound + _Random() % (right_bound - left_bound);
+    int _GetRandomNumber(int bound) {
+        return _Random() % bound;
     }
 
     bool _Check(int row, int column, int value) const {
@@ -52,25 +53,25 @@ private:
     }
 
     void _SwapRows() {
-        int area = _GetRandomNumber(0, _Size);
-        int first_row = _GetRandomNumber(0, _Size);
-        int second_row = _GetRandomNumber(0, _Size);
+        int area = _GetRandomNumber(_Size);
+        int first_row = _GetRandomNumber(_Size);
+        int second_row = _GetRandomNumber(_Size);
         std::swap(_Answer[first_row + _Size * area], _Answer[second_row + _Size * area]);
     }
 
     void SwapColumns() {
-        int area = _GetRandomNumber(0, _Size);
-        int first_column = _GetRandomNumber(0, _Size);
-        int second_column = _GetRandomNumber(0, _Size);
+        int area = _GetRandomNumber(_Size);
+        int first_column = _GetRandomNumber(_Size);
+        int second_column = _GetRandomNumber(_Size);
         for (int index = 0; index < _Size; ++index) {
             std::swap(_Answer[index][first_column + _Size * area], _Answer[index][second_column + _Size * area]);
         }
     }
 
     void _SwapVerticalAreas() {
-        int column = _GetRandomNumber(0, _Size);
-        int first_area = _GetRandomNumber(0, _Size);
-        int second_area = _GetRandomNumber(0, _Size);
+        int column = _GetRandomNumber(_Size);
+        int first_area = _GetRandomNumber(_Size);
+        int second_area = _GetRandomNumber(_Size);
         for (int index_first = 0; index_first < _Size; ++index_first) {
             for (int index_second = 0; index_second < _Size; ++index_second) {
                 std::swap(_Answer[index_second + _Size * first_area][index_first + _Size * column],
