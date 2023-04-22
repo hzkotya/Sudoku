@@ -1,0 +1,64 @@
+Index: Random.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//\n// Created by georg on 22.04.2023.\n//\n\n#ifndef PROGRAM_RANDOM_H\n#define PROGRAM_RANDOM_H\n\n#include <chrono>\n#include <random>\n\nstd::mt19937 rnd(std::chrono::high_resolution_clock::now().time_since_epoch().count());\n\ninline unsigned int GetRandomNumber(unsigned int left_bound,\n                                    unsigned int right_bound) {\n    auto width = right_bound - left_bound + 1;\n    return left_bound + rnd() % width;\n}\n\ninline unsigned int GetRandomNumber(unsigned int bound) {\n    return rnd() % bound;\n}\n\n\n#endif //PROGRAM_RANDOM_H\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Random.h b/Random.h
+--- a/Random.h	(revision 9d333e78c5644ba7d64981735cca974169b6d4e7)
++++ b/Random.h	(date 1682115301326)
+@@ -10,8 +10,7 @@
+ 
+ std::mt19937 rnd(std::chrono::high_resolution_clock::now().time_since_epoch().count());
+ 
+-inline unsigned int GetRandomNumber(unsigned int left_bound,
+-                                    unsigned int right_bound) {
++inline unsigned int GetRandomNumber(unsigned int left_bound, unsigned int right_bound) {
+     auto width = right_bound - left_bound + 1;
+     return left_bound + rnd() % width;
+ }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"CMakePresetLoader\">{\n  &quot;useNewFormat&quot;: true\n}</component>\n  <component name=\"CMakeReloadState\">\n    <option name=\"reloaded\" value=\"true\" />\n  </component>\n  <component name=\"CMakeRunConfigurationManager\">\n    <generated>\n      <config projectName=\"program\" targetName=\"program\" />\n    </generated>\n  </component>\n  <component name=\"CMakeSettings\" AUTO_RELOAD=\"true\">\n    <configurations>\n      <configuration PROFILE_NAME=\"Debug\" ENABLED=\"true\" CONFIG_NAME=\"Debug\" />\n    </configurations>\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"532e7e04-a3da-4664-b78e-237547df8558\" name=\"Changes\" comment=\"cosmetica tuda suda\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/main.cpp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/main.cpp\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"ClangdSettings\">\n    <option name=\"formatViaClangd\" value=\"false\" />\n  </component>\n  <component name=\"ExecutionTargetManager\" SELECTED_TARGET=\"CMakeBuildProfile:Debug\" />\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"CMakeLists.txt\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Rebase.Settings\">\n    <option name=\"NEW_BASE\" value=\"origin/master\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProblemsViewState\">\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\n  </component>\n  <component name=\"ProjectApplicationVersion\">\n    <option name=\"ide\" value=\"CLion\" />\n    <option name=\"majorVersion\" value=\"2022\" />\n    <option name=\"minorVersion\" value=\"3.2\" />\n  </component>\n  <component name=\"ProjectId\" id=\"2OXesMWoqyAdECbdox1WrEz57Jb\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\n    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,\n    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,\n    &quot;last_opened_file_path&quot;: &quot;/Users/maria/prog/sudoku&quot;,\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\n  }\n}</component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$\" />\n    </key>\n  </component>\n  <component name=\"RunManager\">\n    <configuration default=\"true\" type=\"CMakeRunConfiguration\" factoryName=\"Application\" REDIRECT_INPUT=\"false\" ELEVATE=\"false\" USE_EXTERNAL_CONSOLE=\"false\" PASS_PARENT_ENVS_2=\"true\">\n      <method v=\"2\">\n        <option name=\"com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"program\" type=\"CMakeRunConfiguration\" factoryName=\"Application\" REDIRECT_INPUT=\"false\" ELEVATE=\"false\" USE_EXTERNAL_CONSOLE=\"false\" PASS_PARENT_ENVS_2=\"true\" PROJECT_NAME=\"program\" TARGET_NAME=\"program\" CONFIG_NAME=\"Debug\" RUN_TARGET_PROJECT_NAME=\"program\" RUN_TARGET_NAME=\"program\">\n      <method v=\"2\">\n        <option name=\"com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask\" enabled=\"true\" />\n      </method>\n    </configuration>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"532e7e04-a3da-4664-b78e-237547df8558\" name=\"Changes\" comment=\"\" />\n      <created>1681711559533</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1681711559533</updated>\n      <workItem from=\"1681711560584\" duration=\"1734000\" />\n      <workItem from=\"1681716124007\" duration=\"1414000\" />\n      <workItem from=\"1681804245779\" duration=\"6486000\" />\n      <workItem from=\"1681937563686\" duration=\"5659000\" />\n      <workItem from=\"1682112254267\" duration=\"1000\" />\n      <workItem from=\"1682112789891\" duration=\"1294000\" />\n      <workItem from=\"1682114105068\" duration=\"172000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"penis penis\">\n      <created>1682113164466</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1682113164466</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"cosmetica tuda suda\">\n      <created>1682113839051</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1682113839051</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"cosmetica tuda suda\">\n      <created>1682113847320</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1682113847320</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"cosmetica tuda suda\">\n      <created>1682114015591</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1682114015591</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"5\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"penis penis\" />\n    <MESSAGE value=\"cosmetica tuda suda\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"cosmetica tuda suda\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 9d333e78c5644ba7d64981735cca974169b6d4e7)
++++ b/.idea/workspace.xml	(date 1682115301424)
+@@ -20,9 +20,9 @@
+     </configurations>
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="532e7e04-a3da-4664-b78e-237547df8558" name="Changes" comment="cosmetica tuda suda">
++    <list default="true" id="532e7e04-a3da-4664-b78e-237547df8558" name="Changes" comment="test">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Random.h" beforeDir="false" afterPath="$PROJECT_DIR$/Random.h" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -63,6 +63,9 @@
+     <option name="minorVersion" value="3.2" />
+   </component>
+   <component name="ProjectId" id="2OXesMWoqyAdECbdox1WrEz57Jb" />
++  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
++    <OptionsSetting value="false" id="Update" />
++  </component>
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+@@ -91,11 +94,6 @@
+     </key>
+   </component>
+   <component name="RunManager">
+-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+-      <method v="2">
+-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+-      </method>
+-    </configuration>
+     <configuration name="program" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="program" TARGET_NAME="program" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="program" RUN_TARGET_NAME="program">
+       <method v="2">
+         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
