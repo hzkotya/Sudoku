@@ -53,32 +53,30 @@ private:
         int area = GetRandomNumber(_Size);
         int first_column = GetRandomNumber(_Size);
         int second_column = GetRandomNumber(_Size);
-        for (int index = 0; index < _Size; ++index) {
+        for (int index = 0; index < _Size * _Size; ++index) {
             std::swap(_Answer[index][first_column + _Size * area], _Answer[index][second_column + _Size * area]);
         }
     }
 
     void _SwapVerticalAreas() {
-        int column = GetRandomNumber(_Size);
         int first_area = GetRandomNumber(_Size);
         int second_area = GetRandomNumber(_Size);
-        for (int index_first = 0; index_first < _Size; ++index_first) {
+        for (int index_first = 0; index_first < _Size * _Size; ++index_first) {
             for (int index_second = 0; index_second < _Size; ++index_second) {
-                std::swap(_Answer[index_second + _Size * first_area][index_first + _Size * column],
-                          _Answer[index_second + _Size * second_area][index_first + _Size * column]);
+                std::swap(_Answer[index_first][index_second + _Size * first_area],
+                          _Answer[index_first][index_second + _Size * second_area]);
             }
         }
     }
 
 
     void _SwapHorizontalAreas() {
-        int row = GetRandomNumber(_Size);
         int first_area = GetRandomNumber(_Size);
         int second_area = GetRandomNumber(_Size);
         for (int index_first = 0; index_first < _Size; ++index_first) {
-            for (int index_second = 0; index_second < _Size; ++index_second) {
-                std::swap(_Answer[index_first + _Size * row][index_second + _Size * first_area],
-                          _Answer[index_second + _Size * row][index_second + _Size * second_area]);
+            for (int index_second = 0; index_second < _Size * _Size; ++index_second) {
+                std::swap(_Answer[index_first + _Size * first_area][index_second],
+                          _Answer[index_first + _Size * second_area][index_second]);
             }
         }
     }
