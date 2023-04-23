@@ -1,10 +1,3 @@
-//
-// Created by georg on 22.04.2023.
-//
-
-#ifndef PROGRAM_RANDOM_H
-#define PROGRAM_RANDOM_H
-
 #include <chrono>
 #include <random>
 
@@ -18,6 +11,3 @@ inline unsigned int GetRandomNumber(unsigned int left_bound, unsigned int right_
 inline unsigned int GetRandomNumber(unsigned int bound) {
     return rnd() % bound;
 }
-
-
-#endif //PROGRAM_RANDOM_H
