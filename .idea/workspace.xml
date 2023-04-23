@@ -20,8 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="532e7e04-a3da-4664-b78e-237547df8558" name="Changes" comment="хз че это">
-      <change afterPath="$PROJECT_DIR$/Validator.h" afterDir="false" />
+    <list default="true" id="532e7e04-a3da-4664-b78e-237547df8558" name="Changes" comment="заработала хуевина">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Random.h" beforeDir="false" afterPath="$PROJECT_DIR$/Random.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
@@ -168,7 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682180441854</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="заработала хуевина">
+      <created>1682271288127</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1682271288127</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,14 +197,15 @@
     <MESSAGE value="test" />
     <MESSAGE value="пофиксила генерацию" />
     <MESSAGE value="хз че это" />
-    <option name="LAST_COMMIT_MESSAGE" value="хз че это" />
+    <MESSAGE value="заработала хуевина" />
+    <option name="LAST_COMMIT_MESSAGE" value="заработала хуевина" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>161</line>
+          <line>147</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
