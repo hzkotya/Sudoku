@@ -1,5 +1,6 @@
-#include "examplewindow.h"
+#include "examplewindow.hpp"
 #include <gtkmm/application.h>
+#include "Sudoku.h"
 
 int main(int argc, char *argv[])
 {

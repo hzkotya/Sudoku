@@ -20,18 +20,14 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="532e7e04-a3da-4664-b78e-237547df8558" name="Changes" comment="вынесла судоку">
-      <change afterPath="$PROJECT_DIR$/examplewindow.cc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examplewindow.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="532e7e04-a3da-4664-b78e-237547df8558" name="Changes" comment="уцщрфзыпь">
+      <change afterPath="$PROJECT_DIR$/examplewindow.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Random.h" beforeDir="false" afterPath="$PROJECT_DIR$/Random.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sudoku.h" beforeDir="false" afterPath="$PROJECT_DIR$/Sudoku.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Validator.h" beforeDir="false" afterPath="$PROJECT_DIR$/Validator.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simple" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simple.cc" beforeDir="false" afterPath="$PROJECT_DIR$/main.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examplewindow.cc" beforeDir="false" afterPath="$PROJECT_DIR$/examplewindow.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examplewindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/examplewindow.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cc" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,6 +93,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.lookFeel",
+    "structure.view.defaults.are.configured": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -132,7 +129,7 @@
       <workItem from="1682112254267" duration="1000" />
       <workItem from="1682112789891" duration="1294000" />
       <workItem from="1682114105068" duration="172000" />
-      <workItem from="1682401758567" duration="16068000" />
+      <workItem from="1682401758567" duration="17709000" />
     </task>
     <task id="LOCAL-00001" summary="penis penis">
       <created>1682113164466</created>
@@ -204,7 +201,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682272115245</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="уцщрфзыпь">
+      <created>1682440078959</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1682440078959</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,6 +235,7 @@
     <MESSAGE value="заработала хуевина" />
     <MESSAGE value="пофиксила кодстайл немного" />
     <MESSAGE value="вынесла судоку" />
-    <option name="LAST_COMMIT_MESSAGE" value="вынесла судоку" />
+    <MESSAGE value="уцщрфзыпь" />
+    <option name="LAST_COMMIT_MESSAGE" value="уцщрфзыпь" />
   </component>
 </project>

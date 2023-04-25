@@ -13,6 +13,6 @@ include_directories(include ${GTKMM_INCLUDE_DIRS})
 
 file(GLOB SOURCES "*.cpp")
 set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-O3")
-add_executable(program main.cc examplewindow.cc)
+add_executable(program main.cpp)
 
 target_link_libraries(program ${GTKMM_LIBRARIES})

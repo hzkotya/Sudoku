@@ -3,7 +3,6 @@
 #include <vector>
 #include "Random.h"
 #include "Validator.h"
-;
 
 class Sudoku {
 public:
