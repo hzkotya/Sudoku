@@ -4,6 +4,7 @@
 
 int main(int argc, char *argv[])
 {
+    sudoku.printans();
     auto app = Gtk::Application::create("org.gtkmm.example");
 
     // Shows the window and returns when it is closed.

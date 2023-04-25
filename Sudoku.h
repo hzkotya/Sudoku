@@ -4,19 +4,20 @@
 #include "Random.h"
 #include "Validator.h"
 
+constexpr int Size = 3;
 class Sudoku {
 public:
-    const int Size = 3;
     int FilledCount = 0;
     std::vector<std::vector<int>> Current;
     std::vector<int> RowsBitmasks;
     std::vector<int> ColumnsBitmasks;
     std::vector<int> BoxesBitmasks;
+    std::vector<int> regimes;
 
     void printans() {
         for (int i = 0; i < Size * Size; ++i) {
             for (int j = 0; j < Size * Size; ++j) {
-                std::cerr << Answer[i][j] << ' ';
+                std::cerr << Answer[j][i] << ' ';
             }
             std::cerr << '\n';
         }
@@ -27,14 +28,15 @@ public:
     void print() {
         for (int i = 0; i < Size * Size; ++i) {
             for (int j = 0; j < Size * Size; ++j) {
-                std::cerr << Current[i][j] << ' ';
+                std::cerr << Current[j][i] << ' ';
             }
             std::cerr << '\n';
         }
         std::cerr << '\n';
     }
 
-    explicit Sudoku() {
+    explicit Sudoku(int regime) {
+        regimes = {25, 38, 55};
         Answer.assign(Size * Size, std::vector<int>(Size * Size));
         for (int index_first = 0; index_first < Size * Size; ++index_first) {
             for (int index_second = 0; index_second < Size * Size; ++index_second) {
@@ -51,14 +53,17 @@ public:
             }
         }
         std::shuffle(positions.begin(), positions.end(), rnd);
-        int cnt = 81;
+        int cnt = 0;
         for (auto [row, column] : positions) {
+            if (cnt > regimes[regime]) {
+                break;
+            }
             auto NewGrid = Current;
             NewGrid[row][column] = 0;
             if (!SudokuValidator(NewGrid, Answer).IsUniqueSolution) {
-                cnt--;
                 continue;
             }
+            cnt++;
             Current = NewGrid;
         }
         auto x = SudokuValidator(Current, Answer);
@@ -74,17 +79,15 @@ public:
         }
     }
 
-    void Fill() {
-        int row;
-        int column;
-        int value;
-        std::cin >> row >> column >> value;
+    bool Fill(int row, int column, int value) {
         if (Check(row, column, value)) {
             Current[row][column] = value;
         } else {
             std::cerr << "JA PIERDOLĘ\n";
+            return false;
         }
-        print();
+//        print();
+        return true;
         if (FilledCount == Size * Size * Size * Size) {
             std::cerr << "YOU WON!!\n";
             exit(0);
@@ -152,4 +155,4 @@ private:
 };
 
 
-Sudoku sudoku;
+Sudoku sudoku(2);

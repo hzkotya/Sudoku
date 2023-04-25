@@ -21,13 +21,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="532e7e04-a3da-4664-b78e-237547df8558" name="Changes" comment="уцщрфзыпь">
-      <change afterPath="$PROJECT_DIR$/examplewindow.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sudoku.h" beforeDir="false" afterPath="$PROJECT_DIR$/Sudoku.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examplewindow.cc" beforeDir="false" afterPath="$PROJECT_DIR$/examplewindow.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examplewindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/examplewindow.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cc" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Validator.h" beforeDir="false" afterPath="$PROJECT_DIR$/Validator.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examplewindow.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examplewindow.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examplewindow.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/examplewindow.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +129,7 @@
       <workItem from="1682112254267" duration="1000" />
       <workItem from="1682112789891" duration="1294000" />
       <workItem from="1682114105068" duration="172000" />
-      <workItem from="1682401758567" duration="17709000" />
+      <workItem from="1682401758567" duration="27980000" />
     </task>
     <task id="LOCAL-00001" summary="penis penis">
       <created>1682113164466</created>
@@ -208,7 +208,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682440078959</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="уцщрфзыпь">
+      <created>1682441780468</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1682441780468</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
