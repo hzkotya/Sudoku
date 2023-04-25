@@ -1,7 +1,9 @@
+#pragma once
 #include <iostream>
 #include <vector>
 #include "Random.h"
 #include "Validator.h"
+;
 
 class Sudoku {
 public:
@@ -50,14 +52,20 @@ public:
             }
         }
         std::shuffle(positions.begin(), positions.end(), rnd);
+        int cnt = 81;
         for (auto [row, column] : positions) {
             auto NewGrid = Current;
             NewGrid[row][column] = 0;
             if (!SudokuValidator(NewGrid, Answer).IsUniqueSolution) {
+                cnt--;
                 continue;
             }
             Current = NewGrid;
         }
+        auto x = SudokuValidator(Current, Answer);
+        x.print();
+        std::cerr << x.IsAnsFound << '\n';
+        std::cerr << cnt << '\n';
         for (int row = 0; row < Size * Size; ++row) {
             for (int column = 0; column < Size * Size; ++column) {
                 if (Current[row][column] != 0) {
@@ -143,3 +151,6 @@ private:
 
 
 };
+
+
+Sudoku sudoku;

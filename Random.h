@@ -1,3 +1,4 @@
+#pragma once
 #include <chrono>
 #include <random>
 
@@ -9,5 +10,5 @@ int GetRandomNumber(int left_bound, int right_bound) {
 }
 
 int GetRandomNumber(int bound) {
-    return static_cast<int>(rnd()) % bound;
+    return rnd() % bound;
 }

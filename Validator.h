@@ -1,3 +1,4 @@
+#pragma once
 #include <vector>
 #include <cmath>
 #include <algorithm>
@@ -7,11 +8,11 @@
 class SudokuValidator {
 
 public:
-    const int Size = 3;
+    static const int Size = 3;
     bool IsUniqueSolution = true;
+    bool IsAnsFound = false;
 
-    std::multiset<std::pair<int, int>, std::greater<>> CounterSet;
-    std::vector<int> CounterVector;
+    std::vector<int> Counter;
     std::vector<int> RowsBitmasks;
     std::vector<int> ColumnsBitmasks;
     std::vector<int> BoxesBitmasks;
@@ -24,7 +25,7 @@ public:
         RowsBitmasks.resize(Size * Size);
         ColumnsBitmasks.resize(Size * Size);
         BoxesBitmasks.resize(Size * Size);
-        CounterVector.resize(Size * Size);
+        Counter.resize(Size * Size);
         for (int row = 0; row < Size * Size; ++row) {
             for (int column = 0; column < Size * Size; ++column) {
                 if (Sudoku[row][column] == 0) {
@@ -36,23 +37,44 @@ public:
         Finder();
     }
 
+    void print() {
+        for (auto i: Sudoku) {
+            for (auto j: i) {
+                std::cerr << j << ' ';
+            }
+            std::cerr << '\n';
+        }
+        std::cerr << '\n';
+    }
+
 private:
 
     void Finder() {
-        if (CounterSet.empty() && Sudoku != Author_Solution) {
+        int number = 0;
+        for (int value = 1; value <= Size * Size; ++value) {
+            if (Counter[value] < Size * Size && (!number || Counter[value] > Counter[number])) {
+                number = value;
+            }
+        }
+
+        if (!number && Sudoku == Author_Solution) {
+            IsAnsFound = true;
+        }
+        if (!number && Sudoku != Author_Solution) {
+            IsAnsFound = true;
             IsUniqueSolution = false;
         }
-        if (CounterSet.empty() || !IsUniqueSolution) {
+        if (!number || !IsUniqueSolution) {
             return;
         }
-        int number = CounterSet.begin()->second;
         for (int box = 0; box < Size * Size && IsUniqueSolution; ++box) {
             if (BoxesBitmasks[box] & (1 << number)) {
                 continue;
             }
             for (int row = Size * (box / Size); row < Size * (box / Size + 1); ++row) {
                 for (int column = Size * (box % Size); column < Size * (box % Size + 1); ++column) {
-                    if (!(RowsBitmasks[row] & (1 << number)) && !(ColumnsBitmasks[column] & (1 << number))) {
+                    if (!Sudoku[row][column] && !(RowsBitmasks[row] & (1 << number)) &&
+                        !(ColumnsBitmasks[column] & (1 << number))) {
                         FillCell(row, column, number);
                         Finder();
                         ClearCell(row, column);
@@ -60,28 +82,27 @@ private:
                 }
             }
         }
-
     }
 
     void FillCell(int row, int column, int value) {
         Sudoku[row][column] = value;
+        assert(!(RowsBitmasks[row] & (1 << Sudoku[row][column])));
+        assert(!(ColumnsBitmasks[column] & (1 << Sudoku[row][column])));
+        assert(!(BoxesBitmasks[row / 3 * 3 + column / 3] & (1 << Sudoku[row][column])));
         RowsBitmasks[row] |= (1 << Sudoku[row][column]);
         ColumnsBitmasks[column] |= (1 << Sudoku[row][column]);
         BoxesBitmasks[row / 3 * 3 + column / 3] |= (1 << Sudoku[row][column]);
-        CounterSet.erase({CounterVector[Sudoku[row][column]], Sudoku[row][column]});
-        if (++CounterVector[Sudoku[row][column]] < Size * Size) {
-            CounterSet.emplace(CounterVector[Sudoku[row][column]], Sudoku[row][column]);
-        }
+        ++Counter[Sudoku[row][column]];
     }
 
     void ClearCell(int row, int column) {
+        assert(RowsBitmasks[row] & (1 << Sudoku[row][column]));
+        assert(ColumnsBitmasks[column] & (1 << Sudoku[row][column]));
+        assert(BoxesBitmasks[row / 3 * 3 + column / 3] & (1 << Sudoku[row][column]));
         RowsBitmasks[row] -= (1 << Sudoku[row][column]);
         ColumnsBitmasks[column] -= (1 << Sudoku[row][column]);
         BoxesBitmasks[row / 3 * 3 + column / 3] -= (1 << Sudoku[row][column]);
-        CounterSet.erase({CounterVector[Sudoku[row][column]], Sudoku[row][column]});
-        if (--CounterVector[Sudoku[row][column]] < Size * Size) {
-            CounterSet.emplace(CounterVector[Sudoku[row][column]], Sudoku[row][column]);
-        }
+        --Counter[Sudoku[row][column]];
         Sudoku[row][column] = 0;
     }
 
